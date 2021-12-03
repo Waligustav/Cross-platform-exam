@@ -9,6 +9,7 @@ import { AllCharacters } from "../types/AllCharacters";
 import RickAndMortyApi from "../api/RickAndMortyApi";
 import useApi from "../hooks/useApi";
 import { SafeAreaView } from "react-native-safe-area-context";
+import colors from "../../app/config/colors";
 
 type Props = {
   refreshList?: () => void;
@@ -55,4 +56,20 @@ export default function CharacterListScreen() {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: "row",
+  },
+  container: {
+    margin: 10,
+  },
+  title: {
+    fontWeight: "bold",
+  },
+  text: {
+    color: colors.gray,
+    textTransform: "capitalize",
+    marginLeft: 10,
+    fontSize: 16,
+  },
+});

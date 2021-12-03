@@ -25,7 +25,7 @@ export default function ListItem({
 }: Props) {
   return (
     <Swipeable renderRightActions={renderRightActions}>
-      <View style={[styles.row, styles.container]}>
+      <View>
         {image && <Sprite uri={image} size={40} />}
         <View>
           <Text style={[styles.text, styles.title]}>{name}</Text>
