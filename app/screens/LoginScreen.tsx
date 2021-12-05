@@ -3,11 +3,11 @@ import { ImageBackground, StyleSheet, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import Button from "../components/Button";
-import { RootLoginParamList } from "../navigation/LoginNavigator";
+import { RootStackParamList } from "../types/RootStackParamList";
 
 export default function LoginScreen({
   navigation,
-}: NativeStackScreenProps<RootLoginParamList, "Login">) {
+}: NativeStackScreenProps<RootStackParamList, "Login">) {
   const image =
     "https://cutewallpaper.org/21/rick-and-morty-phone-wallpaper/Rick-And-Morty-Rick-Y-Morty-Wallpapers-Iphone-Hd-.jpg";
   return (

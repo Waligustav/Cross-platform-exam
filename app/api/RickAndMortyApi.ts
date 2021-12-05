@@ -13,9 +13,9 @@ const getAllCharacters = async() => {
     }
 }
 
-const getCharacterById = async(character: number) => {
+const getCharacterById = async(characterId: number) => {
     try{
-        const response = await axios.get<Character>(`character/${character}`);
+        const response = await axios.get<Character>(`character/${characterId}`);
         return response.data;
     } catch (error){
         throw 'Error fetching character: ' + error;

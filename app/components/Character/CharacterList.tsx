@@ -1,21 +1,14 @@
 import React, { useEffect } from "react";
-import { FlatList, StyleSheet, Text } from "react-native";
-import {
-  ListItemSeparator,
-  ListItem,
-  ListItemDelete,
-} from "../components/ListComponents";
-import { AllCharacters } from "../types/AllCharacters";
-import RickAndMortyApi from "../api/RickAndMortyApi";
-import useApi from "../hooks/useApi";
+import { FlatList, StyleSheet } from "react-native";
+import { ListItemSeparator, ListItemDelete } from "..";
+import { CharacterListItem } from "..";
+import { AllCharacters } from "../../types/AllCharacters";
+import RickAndMortyApi from "../../api/RickAndMortyApi";
+import useApi from "../../hooks/useApi";
 import { SafeAreaView } from "react-native-safe-area-context";
-import colors from "../../app/config/colors";
+import colors from "../../config/colors";
 
-type Props = {
-  refreshList?: () => void;
-};
-
-export default function CharacterListScreen() {
+export default function CharacterList() {
   const {
     data: characters,
     loading,
@@ -37,7 +30,7 @@ export default function CharacterListScreen() {
         data={characters?.results}
         keyExtractor={(nameObject) => nameObject.id.toString()}
         renderItem={({ item }) => (
-          <ListItem
+          <CharacterListItem
             id={item.id}
             name={item.name}
             species={item.species}
@@ -51,7 +44,6 @@ export default function CharacterListScreen() {
         refreshing={loading}
         onRefresh={getAllCharacters}
       />
-      <Text>Test</Text>
     </SafeAreaView>
   );
 }

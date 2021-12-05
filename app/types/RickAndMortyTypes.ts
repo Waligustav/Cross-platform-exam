@@ -1,11 +1,12 @@
 export type Character = {
-    id: number;
+  id: number;
+  name: string;
+  species?: string;
+  origin?: {
     name: string;
-    status: string;
-    species: string;
-    gender: string;
-    origin: { name: string };
-    image: string;
+    url: string;
+  };
+  image: string;
   };
   
   export type Location = {

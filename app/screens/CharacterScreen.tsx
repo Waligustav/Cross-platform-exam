@@ -9,8 +9,7 @@ import {
 } from "react-native";
 import RickAndMortyApi from "../api/RickAndMortyApi";
 import { Character } from "../types/RickAndMortyTypes";
-
-import ItemContainer from "../components/ListComponents/ItemContainer";
+import CharacterDetails from "../components/Character/CharacterDetails";
 import colors from "../config/colors";
 import useApi from "../hooks/useApi";
 
@@ -21,11 +20,11 @@ export default function CharacterScreen({ characterId }: Props) {
     data: character,
     loading,
     error,
-    request: getCharacter,
+    request: getCharacterById,
   } = useApi<Character>(RickAndMortyApi.getCharacterById);
 
   useEffect(() => {
-    getCharacter(characterId);
+    getCharacterById(characterId);
   }, [characterId]);
 
   return (
@@ -37,13 +36,11 @@ export default function CharacterScreen({ characterId }: Props) {
             <Text>Woops, this did not go as planned!</Text>
             <Button
               title="Try again"
-              onPress={() => getCharacter(characterId)}
+              onPress={() => getCharacterById(characterId)}
             />
           </>
         )}
-        {!error && !loading && !!character && (
-          <ItemContainer character={character} />
-        )}
+        {!error && !loading && <CharacterDetails character={character!} />}
       </View>
     </SafeAreaView>
   );

@@ -3,14 +3,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import LoginScreen from "../screens/LoginScreen";
 import TabNavigator from "./TabNavigator";
-
-export type RootLoginParamList = {
-  Login: undefined;
-  Authenticated: { username: string; imageUri: string };
-};
+import { RootStackParamList } from "../types/RootStackParamList";
 
 export default function LoginNavigator() {
-  const Stack = createNativeStackNavigator<RootLoginParamList>();
+  const Stack = createNativeStackNavigator<RootStackParamList>();
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Login" component={LoginScreen} />

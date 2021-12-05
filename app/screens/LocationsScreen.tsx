@@ -4,11 +4,11 @@ import { FontAwesome5 } from "@expo/vector-icons";
 
 import colors from "../config/colors";
 
-export default function UploadImageScreen() {
+export default function LocationsScreen() {
   return (
     <View style={[styles.flex, styles.container]}>
       <View style={[styles.container, styles.iconBackground]}>
-        <FontAwesome5 name="camera" size={40} color={colors.dark} />
+        <FontAwesome5 name="globe" size={40} color={colors.dark} />
       </View>
     </View>
   );

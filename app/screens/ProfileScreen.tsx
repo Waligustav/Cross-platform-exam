@@ -5,13 +5,12 @@ import { NavigationProp } from "@react-navigation/native";
 
 import Button from "../components/Button";
 import User from "../components/User";
-import { RootLoginParamList } from "../navigation/LoginNavigator";
-import { RootBottomTabPropTypes } from "../navigation/TabNavigator";
+import { RootStackParamList } from "../types/RootStackParamList";
 
-export default function SettingsScreen({
+export default function ProfileScreen({
   route,
   navigation,
-}: BottomTabScreenProps<RootBottomTabPropTypes, "Settings">) {
+}: BottomTabScreenProps<RootStackParamList, "Profile">) {
   return (
     <View style={styles.container}>
       <User username={route.params.username} imageUri={route.params.imageUri} />
@@ -19,7 +18,7 @@ export default function SettingsScreen({
         title="Logg ut"
         onPress={() =>
           navigation
-            .getParent<NavigationProp<RootLoginParamList>>()
+            .getParent<NavigationProp<RootStackParamList>>()
             .navigate("Login")
         }
         type="hitlerinaHair"

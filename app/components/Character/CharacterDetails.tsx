@@ -6,17 +6,17 @@ import colors from "../../config/colors";
 
 type Props = { character: Character };
 
-export default function ItemContainer({ character }: Props) {
+export default function CharacterDetails({ character }: Props) {
   return (
     <>
       <Text style={[styles.text, styles.characterId]}>{character.id}</Text>
       <Sprite uri={character.image} />
       <Text style={[styles.text, styles.characterName]}>{character.name}</Text>
-      <Text style={[styles.text, styles.characterStatus]}>
-        {character.gender} that is currently {character.status}
-      </Text>
-      <Text style={[styles.text, styles.characterSpecies]}>
+      <Text style={[styles.text, styles.characterSpecs]}>
         Species: {character.species}
+      </Text>
+      <Text style={[styles.text, styles.characterSpecs]}>
+        Comes from: {character.origin?.name}
       </Text>
     </>
   );
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     textTransform: "lowercase",
     marginBottom: 8,
   },
-  characterSpecies: {
+  characterSpecs: {
     fontSize: 16,
     fontWeight: "bold",
     textTransform: "capitalize",

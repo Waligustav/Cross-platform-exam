@@ -17,11 +17,7 @@ export default function ListItemDelete({ onPress }: Props) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.separator}>
-        <MaterialCommunityIcons
-          name="pokeball"
-          color={colors.white}
-          size={30}
-        />
+        <MaterialCommunityIcons name="delete" color={colors.white} size={30} />
       </View>
     </TouchableWithoutFeedback>
   );
