@@ -1,6 +1,5 @@
 import axios from 'axios'
-import {Character, Location, Episode} from '../types/RickAndMortyTypes'
-import { AllCharacters } from "../types/AllCharacters";
+import {Character, Location, Episodes, AllLocations, AllCharacters} from '../types/RickAndMortyTypes'
 
 axios.defaults.baseURL = 'https://rickandmortyapi.com/api/'
 
@@ -22,6 +21,15 @@ const getCharacterById = async(characterId: number) => {
     }
 }
 
+const getAllLocations = async () => {
+    try {
+      const response = await axios.get<AllLocations>("location/");
+      return response.data;
+    } catch (error) {
+      throw "Feil ved henting av: " + error;
+    }
+  };
+
 //Todo - get all or getById?
 const getLocationById = async(locationId: number) => {
     try{
@@ -35,7 +43,7 @@ const getLocationById = async(locationId: number) => {
 //Todo - get all or getById?
 const getEpisodeById = async(episodeId: number) => {
     try{
-        const response = await axios.get<Episode>(`episode${episodeId}`);
+        const response = await axios.get<Episodes>(`episode${episodeId}`);
         return response.data;
     } catch (error){
         throw 'Error fetching episode: ' + error;
@@ -48,5 +56,6 @@ export default {
     getAllCharacters,
     getCharacterById,
     getLocationById,
-    getEpisodeById
+    getEpisodeById,
+    getAllLocations
 }

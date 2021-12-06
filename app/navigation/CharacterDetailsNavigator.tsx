@@ -1,15 +1,15 @@
 import { NavigationProp, useNavigation } from "@react-navigation/core";
 import React from "react";
 import { Button } from "react-native";
-import { RootStackParamList } from "../types/RootStackParamList";
+import { RootParams } from "../types/RootParams";
 
 type Props = {
   characterId: number;
   name: string;
 };
 
-const CharacterButton = ({ characterId, name }: Props) => {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+const CharacterDetailsNavigator = ({ characterId, name }: Props) => {
+  const navigation = useNavigation<NavigationProp<RootParams>>();
   return (
     <Button
       //Todo - ikon istället ( ==> ikon)
@@ -24,4 +24,4 @@ const CharacterButton = ({ characterId, name }: Props) => {
   );
 };
 
-export default CharacterButton;
+export default CharacterDetailsNavigator;

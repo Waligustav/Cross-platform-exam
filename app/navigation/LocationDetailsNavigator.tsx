@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "react-native";
-import { RootStackParamList } from "../types/RootStackParamList";
+import { RootParams } from "../types/RootParams";
 import { NavigationProp, useNavigation } from "@react-navigation/core";
 
 type Props = {
@@ -8,13 +8,13 @@ type Props = {
   name: string;
 };
 
-const LocationButton = ({ locationId, name }: Props) => {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+const LocationDetailsNavigator = ({ locationId, name }: Props) => {
+  const navigation = useNavigation<NavigationProp<RootParams>>();
   return (
     <Button
       title="Read more"
       onPress={() =>
-        navigation.navigate("LocationScreen", {
+        navigation.navigate("LocationDetails", {
           locationId: locationId,
           name: name,
         })
@@ -23,4 +23,4 @@ const LocationButton = ({ locationId, name }: Props) => {
   );
 };
 
-export default LocationButton;
+export default LocationDetailsNavigator;

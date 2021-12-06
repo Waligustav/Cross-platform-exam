@@ -1,12 +1,12 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
 import { SafeAreaView } from "react-native";
-import { RootStackParamList } from "../types/RootStackParamList";
+import { RootParams } from "../types/RootParams";
 import CharacterScreen from "./CharacterScreen";
 
 export const CharacterDetailsScreen = ({
   route,
-}: NativeStackScreenProps<RootStackParamList, "CharacterDetails">) => {
+}: NativeStackScreenProps<RootParams, "CharacterDetails">) => {
   return (
     <SafeAreaView>
       <CharacterScreen characterId={route.params.characterId} />

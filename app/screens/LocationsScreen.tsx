@@ -1,15 +1,44 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
-
+import React, { useEffect } from "react";
+import {
+  ActivityIndicator,
+  StyleSheet,
+  View,
+  Text,
+  Button,
+} from "react-native";
+import RickAndMortyApi from "../api/RickAndMortyApi";
+import LocationDetails from "../components/Location/LocationDetails";
+import { Location } from "../types/RickAndMortyTypes";
 import colors from "../config/colors";
+import useApi from "../hooks/useApi";
 
-export default function LocationsScreen() {
+type Props = { locationId: number };
+
+export default function LocationsScreen({ locationId }: Props) {
+  const {
+    data: location,
+    loading,
+    error,
+    request: getLocationById,
+  } = useApi<Location>(RickAndMortyApi.getLocationById);
+
+  useEffect(() => {
+    getLocationById(locationId);
+  }, [locationId]);
+
   return (
-    <View style={[styles.flex, styles.container]}>
-      <View style={[styles.container, styles.iconBackground]}>
-        <FontAwesome5 name="globe" size={40} color={colors.dark} />
-      </View>
+    <View style={styles.container}>
+      <ActivityIndicator animating={loading} size="large" />
+      {error && (
+        <>
+          <Text>Woops, this did not go as planned!</Text>
+          <Button
+            title="Try again"
+            onPress={() => getLocationById(locationId)}
+          />
+        </>
+      )}
+      {!error && !loading && <LocationDetails location={location!} />}
     </View>
   );
 }

@@ -9,9 +9,11 @@ type Props = { character: Character };
 export default function CharacterDetails({ character }: Props) {
   return (
     <>
-      <Text style={[styles.text, styles.characterId]}>{character.id}</Text>
       <Sprite uri={character.image} />
       <Text style={[styles.text, styles.characterName]}>{character.name}</Text>
+      <Text style={[styles.text, styles.characterStatus]}>
+        {character.gender} that is currently {character.status}
+      </Text>
       <Text style={[styles.text, styles.characterSpecs]}>
         Species: {character.species}
       </Text>

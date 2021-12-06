@@ -2,16 +2,16 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { FontAwesome5 } from "@expo/vector-icons";
-
 import ProfileScreen from "../screens/ProfileScreen";
-import LocationsScreen from "../screens/LocationsScreen";
-import Navigator from "./Navigator";
-import { RootStackParamList } from "../types/RootStackParamList";
+
+import CharacterNavigator from "./CharacterNavigator";
+import LocationNavigator from "./LocationNavigator";
+import { RootParams } from "../types/RootParams";
 
 export default function TabNavigator({
   route,
-}: NativeStackScreenProps<RootStackParamList, "Authenticated">) {
-  const Tab = createBottomTabNavigator<RootStackParamList>();
+}: NativeStackScreenProps<RootParams, "Authenticated">) {
+  const Tab = createBottomTabNavigator<RootParams>();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -23,7 +23,7 @@ export default function TabNavigator({
     >
       <Tab.Screen
         name="Characters"
-        component={Navigator}
+        component={CharacterNavigator}
         options={{
           tabBarIcon: ({ color, size }) => (
             <FontAwesome5 name="image" size={size} color={color} />
@@ -32,7 +32,7 @@ export default function TabNavigator({
       />
       <Tab.Screen
         name="Locations"
-        component={LocationsScreen}
+        component={LocationNavigator}
         options={{
           tabBarIcon: ({ color, size }) => (
             <FontAwesome5 name="compass" color={color} size={size} />

@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import {
   ActivityIndicator,
   Button,
-  SafeAreaView,
   StyleSheet,
   Text,
   View,
@@ -28,21 +27,19 @@ export default function CharacterScreen({ characterId }: Props) {
   }, [characterId]);
 
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <ActivityIndicator animating={loading} size="large" color="#4b4b4d" />
-        {error && (
-          <>
-            <Text>Woops, this did not go as planned!</Text>
-            <Button
-              title="Try again"
-              onPress={() => getCharacterById(characterId)}
-            />
-          </>
-        )}
-        {!error && !loading && <CharacterDetails character={character!} />}
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <ActivityIndicator animating={loading} size="large" color="#4b4b4d" />
+      {error && (
+        <>
+          <Text>Woops, this did not go as planned!</Text>
+          <Button
+            title="Try again"
+            onPress={() => getCharacterById(characterId)}
+          />
+        </>
+      )}
+      {!error && !loading && <CharacterDetails character={character!} />}
+    </View>
   );
 }
 
