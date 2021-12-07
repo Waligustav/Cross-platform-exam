@@ -19,7 +19,6 @@ export default function ProfileScreen({
         onPress={() =>
           navigation.getParent<NavigationProp<RootParams>>().navigate("Login")
         }
-        type="orange"
       />
     </View>
   );

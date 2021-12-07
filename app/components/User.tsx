@@ -1,5 +1,12 @@
 import React from "react";
-import { Text, StyleSheet, View, Image, Dimensions } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  View,
+  Image,
+  Dimensions,
+  Platform,
+} from "react-native";
 
 import colors from "../config/colors";
 
@@ -11,18 +18,28 @@ export default function User({ username, imageUri }: Props) {
   const size = width / 2;
 
   const styles = StyleSheet.create({
+    ...Platform.select({
+      ios: {
+        platform: { color: colors.mellowBlue },
+      },
+      android: {
+        platform: { color: colors.mellowGreen },
+      },
+      default: {
+        platform: { color: colors.mellowYellow },
+      },
+    }),
     container: { alignItems: "center" },
     imageContainer: {
       width: size,
       height: size,
-      borderRadius: size / 2,
-      borderWidth: 1,
+      borderRadius: size / 4,
+      borderWidth: 2,
       borderColor: colors.dark,
       overflow: "hidden",
       marginBottom: 15,
     },
     username: {
-      color: colors.dark,
       textTransform: "capitalize",
       fontSize: 20,
     },
@@ -33,7 +50,7 @@ export default function User({ username, imageUri }: Props) {
       <View style={styles.imageContainer}>
         <Image source={{ uri: imageUri, width: size, height: size }} />
       </View>
-      <Text style={styles.username}>{username}</Text>
+      <Text style={[styles.username, styles.platform]}>{username}</Text>
     </View>
   );
 }

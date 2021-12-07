@@ -29,13 +29,19 @@ export default function Button({ onPress, title, type = "primary" }: Props) {
   const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
-        platform: { color: colors.mellowBlue },
+        platform: { color: colors.mellowBlue, borderColor: colors.mellowBlue },
       },
       android: {
-        platform: { color: colors.mellowGreen },
+        platform: {
+          color: colors.mellowGreen,
+          borderColor: colors.mellowGreen,
+        },
       },
       default: {
-        platform: { color: colors.mellowYellow },
+        platform: {
+          color: colors.mellowYellow,
+          borderColor: colors.mellowYellow,
+        },
       },
     }),
     button: {
@@ -43,7 +49,6 @@ export default function Button({ onPress, title, type = "primary" }: Props) {
       borderRadius: 5,
       alignItems: "center",
       borderWidth: 1,
-      borderColor: colors.dark,
       backgroundColor: colors.white,
     },
     text: {
@@ -56,7 +61,7 @@ export default function Button({ onPress, title, type = "primary" }: Props) {
   return (
     <TouchableHighlight
       underlayColor={colors.white}
-      style={styles.button}
+      style={[styles.button, styles.platform]}
       onPress={onPress}
     >
       <Text style={[styles.text, styles.platform]}>{title}</Text>
