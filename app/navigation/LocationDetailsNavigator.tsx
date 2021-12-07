@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-native";
+import Button from "../components/Button";
 import { RootParams } from "../types/RootParams";
 import { NavigationProp, useNavigation } from "@react-navigation/core";
 
@@ -12,7 +12,7 @@ const LocationDetailsNavigator = ({ locationId, name }: Props) => {
   const navigation = useNavigation<NavigationProp<RootParams>>();
   return (
     <Button
-      title="Read more"
+      title="More info"
       onPress={() =>
         navigation.navigate("LocationDetails", {
           locationId: locationId,

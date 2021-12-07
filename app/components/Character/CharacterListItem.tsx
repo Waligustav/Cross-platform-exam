@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   text: {
-    color: colors.gray,
+    color: colors.mellowGreen,
     textTransform: "capitalize",
     marginLeft: 10,
     fontSize: 16,

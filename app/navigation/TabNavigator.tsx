@@ -25,8 +25,12 @@ export default function TabNavigator({
         name="Characters"
         component={CharacterNavigator}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome5 name="image" size={size} color={color} />
+          tabBarIcon: ({ focused, color, size }) => (
+            <FontAwesome5
+              name={focused ? "image" : "images"}
+              size={size}
+              color={color}
+            />
           ),
         }}
       />
@@ -34,8 +38,12 @@ export default function TabNavigator({
         name="Locations"
         component={LocationNavigator}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome5 name="compass" color={color} size={size} />
+          tabBarIcon: ({ focused, color, size }) => (
+            <FontAwesome5
+              name={focused ? "globe-americas" : "globe-africa"}
+              color={color}
+              size={size}
+            />
           ),
         }}
       />
@@ -47,8 +55,12 @@ export default function TabNavigator({
           imageUri: route.params.imageUri,
         }}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome5 name="user-alt" size={size} color={color} />
+          tabBarIcon: ({ focused, color, size }) => (
+            <FontAwesome5
+              name={focused ? "user-alt" : "user-circle"}
+              size={size}
+              color={color}
+            />
           ),
         }}
       />

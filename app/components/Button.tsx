@@ -16,18 +16,19 @@ type Props = {
     | "secondary"
     | "light"
     | "danger"
-    | "rickHairColor"
-    | "loginScreenBg"
-    | "hitlerinaHair";
+    | "mellowYellow"
+    | "greenBg"
+    | "mellowGreen"
+    | "brightGreen"
+    | "orange";
 };
 
 export default function Button({ onPress, title, type = "primary" }: Props) {
   const styles = StyleSheet.create({
     button: {
-      backgroundColor: colors[type],
-      marginBottom: 15,
-      padding: 12,
-      borderRadius: 20,
+      backgroundColor: colors.mellowGreen,
+      padding: 5,
+      borderRadius: 5,
       alignItems: "center",
       borderWidth: 1,
       borderColor: colors.dark,
@@ -35,13 +36,13 @@ export default function Button({ onPress, title, type = "primary" }: Props) {
     text: {
       fontSize: 15,
       textTransform: "uppercase",
-      color: colors.dark,
+      color: colors.white,
       fontWeight: "500",
     },
   });
   return (
     <TouchableHighlight
-      underlayColor={colors.dark}
+      underlayColor={colors.brightGreen}
       style={styles.button}
       onPress={onPress}
     >

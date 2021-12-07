@@ -19,7 +19,7 @@ export default function ProfileScreen({
         onPress={() =>
           navigation.getParent<NavigationProp<RootParams>>().navigate("Login")
         }
-        type="hitlerinaHair"
+        type="orange"
       />
     </View>
   );

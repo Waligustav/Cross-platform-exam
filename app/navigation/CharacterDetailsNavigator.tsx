@@ -1,6 +1,6 @@
 import { NavigationProp, useNavigation } from "@react-navigation/core";
 import React from "react";
-import { Button } from "react-native";
+import Button from "../components/Button";
 import { RootParams } from "../types/RootParams";
 
 type Props = {
@@ -13,7 +13,7 @@ const CharacterDetailsNavigator = ({ characterId, name }: Props) => {
   return (
     <Button
       //Todo - ikon istället ( ==> ikon)
-      title="Read more"
+      title="More info"
       onPress={() =>
         navigation.navigate("CharacterDetails", {
           characterId: characterId,

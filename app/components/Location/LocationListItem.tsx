@@ -34,9 +34,9 @@ export default function LocationListItem({ id, name, type, dimension }: Props) {
 const styles = StyleSheet.create({
   row: { flexDirection: "row" },
   container: { margin: 10 },
-  title: { fontWeight: "600" },
+  title: { fontWeight: "bold" },
   text: {
-    color: colors.loginScreenBg,
+    color: colors.mellowGreen,
     textTransform: "capitalize",
     marginLeft: 10,
     fontSize: 16,

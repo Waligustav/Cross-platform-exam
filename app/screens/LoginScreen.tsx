@@ -25,7 +25,6 @@ export default function LoginScreen({
               imageUri: "https://pbs.twimg.com/media/COWiKiuWgAALshz.jpg",
             })
           }
-          type="rickHairColor"
         />
       </View>
     </ImageBackground>
