@@ -18,7 +18,7 @@ export default function LoginScreen({
     >
       <View style={styles.innerContainer}>
         <Button
-          title="Login"
+          title="proceed"
           onPress={() =>
             navigation.navigate("Authenticated", {
               username: "Hitlerina Twerkinson",

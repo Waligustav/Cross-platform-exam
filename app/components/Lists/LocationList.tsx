@@ -5,7 +5,7 @@ import RickAndMortyApi from "../../api/RickAndMortyApi";
 import useApi from "../../hooks/useApi";
 import { AllLocations } from "../../types/RickAndMortyTypes";
 import { ListItemSeparator } from "..";
-import LocationListItem from "./LocationListItem";
+import LocationListItem from "../ListItems/LocationListItem";
 
 export default function LocationList() {
   const {

@@ -7,7 +7,7 @@ import {
   Button,
 } from "react-native";
 import RickAndMortyApi from "../api/RickAndMortyApi";
-import LocationDetails from "../components/Location/LocationDetails";
+import LocationDetails from "../components/Details/LocationDetails";
 import { Location } from "../types/RickAndMortyTypes";
 import colors from "../config/colors";
 import useApi from "../hooks/useApi";

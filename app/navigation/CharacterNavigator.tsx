@@ -1,6 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import CharacterList from "../components/Character/CharacterList";
+import CharacterList from "../components/Lists/CharacterList";
 import { RootParams } from "../types/RootParams";
 import { CharacterDetailsScreen } from "../screens/CharacterDetailsScreen";
 

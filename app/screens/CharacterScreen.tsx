@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import RickAndMortyApi from "../api/RickAndMortyApi";
 import { Character } from "../types/RickAndMortyTypes";
-import CharacterDetails from "../components/Character/CharacterDetails";
+import CharacterDetails from "../components/Details/CharacterDetails";
 import colors from "../config/colors";
 import useApi from "../hooks/useApi";
 

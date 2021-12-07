@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { RootParams } from "../types/RootParams";
 
 import { LocationDetailsScreen } from "../screens/LocationDetailsScreen";
-import LocationList from "../components/Location/LocationList";
+import LocationList from "../components/Lists/LocationList";
 
 export default function LocationNavigator() {
   const Stack = createNativeStackNavigator<RootParams>();
