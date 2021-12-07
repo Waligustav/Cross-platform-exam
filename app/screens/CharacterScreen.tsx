@@ -45,7 +45,7 @@ export default function CharacterScreen({ characterId }: Props) {
 
 const styles = StyleSheet.create({
   container: { padding: 20, alignItems: "center" },
-  text: { color: colors.gray },
+  text: { color: colors.mellowBlue },
   characterId: { marginBottom: 20 },
   characterName: { fontSize: 24, textTransform: "capitalize", marginBottom: 8 },
 });

@@ -3,22 +3,32 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { FontAwesome5 } from "@expo/vector-icons";
 import ProfileScreen from "../screens/ProfileScreen";
+import colors from "../config/colors";
 
 import CharacterNavigator from "./CharacterNavigator";
 import LocationNavigator from "./LocationNavigator";
 import { RootParams } from "../types/RootParams";
+import { Platform } from "react-native";
 
 export default function TabNavigator({
   route,
 }: NativeStackScreenProps<RootParams, "Authenticated">) {
   const Tab = createBottomTabNavigator<RootParams>();
+  let osColor = colors.mellowYellow;
+
+  if (Platform.OS === "ios") {
+    osColor = colors.mellowBlue;
+  }
+  if (Platform.OS === "android") {
+    osColor = colors.mellowGreen;
+  }
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarActiveBackgroundColor: "white",
-        tabBarActiveTintColor: "#4c5e4d",
+        tabBarActiveTintColor: osColor,
         tabBarInactiveBackgroundColor: "white",
-        tabBarInactiveTintColor: "#4c5e4d",
+        tabBarInactiveTintColor: osColor,
       }}
     >
       <Tab.Screen

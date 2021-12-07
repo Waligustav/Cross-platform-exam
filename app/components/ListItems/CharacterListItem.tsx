@@ -1,5 +1,5 @@
 import React from "react";
-import { Animated, StyleSheet, Text, View } from "react-native";
+import { Animated, Platform, StyleSheet, Text, View } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 import colors from "../../config/colors";
 import CharacterDetailsNavigator from "../../navigation/CharacterDetailsNavigator";
@@ -28,8 +28,10 @@ export default function CharacterListItem({
       <View style={[styles.row, styles.container]}>
         {image && <Sprite uri={image} size={40} />}
         <View style={{ flex: 1 }}>
-          <Text style={[styles.text, styles.title]}>{name}</Text>
-          <Text style={[styles.text]}>{species}</Text>
+          <Text style={[styles.text, styles.title, styles.platform]}>
+            {name}
+          </Text>
+          <Text style={[styles.text, styles.platform]}>{species}</Text>
         </View>
         <View style={styles.button}>
           <CharacterDetailsNavigator characterId={id} name={name} />
@@ -40,6 +42,17 @@ export default function CharacterListItem({
 }
 
 const styles = StyleSheet.create({
+  ...Platform.select({
+    ios: {
+      platform: { color: colors.mellowBlue },
+    },
+    android: {
+      platform: { color: colors.mellowGreen },
+    },
+    default: {
+      platform: { color: colors.mellowYellow },
+    },
+  }),
   row: {
     flexDirection: "row",
   },
@@ -50,7 +63,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   text: {
-    color: colors.mellowGreen,
     textTransform: "capitalize",
     marginLeft: 10,
     fontSize: 16,

@@ -12,7 +12,6 @@ const CharacterDetailsNavigator = ({ characterId, name }: Props) => {
   const navigation = useNavigation<NavigationProp<RootParams>>();
   return (
     <Button
-      //Todo - ikon istället ( ==> ikon)
       title="More info"
       onPress={() =>
         navigation.navigate("CharacterDetails", {

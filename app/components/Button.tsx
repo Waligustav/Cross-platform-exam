@@ -4,6 +4,7 @@ import {
   StyleSheet,
   GestureResponderEvent,
   TouchableHighlight,
+  Platform,
 } from "react-native";
 
 import colors from "../config/colors";
@@ -20,33 +21,45 @@ type Props = {
     | "greenBg"
     | "mellowGreen"
     | "brightGreen"
+    | "mellowBlue"
     | "orange";
 };
 
 export default function Button({ onPress, title, type = "primary" }: Props) {
   const styles = StyleSheet.create({
+    ...Platform.select({
+      ios: {
+        platform: { color: colors.mellowBlue },
+      },
+      android: {
+        platform: { color: colors.mellowGreen },
+      },
+      default: {
+        platform: { color: colors.mellowYellow },
+      },
+    }),
     button: {
-      backgroundColor: colors.mellowGreen,
       padding: 5,
       borderRadius: 5,
       alignItems: "center",
       borderWidth: 1,
       borderColor: colors.dark,
+      backgroundColor: colors.white,
     },
     text: {
       fontSize: 15,
       textTransform: "uppercase",
       color: colors.white,
-      fontWeight: "500",
+      fontWeight: "bold",
     },
   });
   return (
     <TouchableHighlight
-      underlayColor={colors.brightGreen}
+      underlayColor={colors.white}
       style={styles.button}
       onPress={onPress}
     >
-      <Text style={styles.text}>{title}</Text>
+      <Text style={[styles.text, styles.platform]}>{title}</Text>
     </TouchableHighlight>
   );
 }

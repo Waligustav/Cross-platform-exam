@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, Platform } from "react-native";
 import { Character } from "../../types/RickAndMortyTypes";
 import Sprite from "../Sprite";
 import colors from "../../config/colors";
@@ -10,14 +10,16 @@ export default function CharacterDetails({ character }: Props) {
   return (
     <>
       <Sprite uri={character.image} />
-      <Text style={[styles.text, styles.characterName]}>{character.name}</Text>
-      <Text style={[styles.text, styles.characterStatus]}>
+      <Text style={[styles.platform, styles.characterName]}>
+        {character.name}
+      </Text>
+      <Text style={[styles.platform, styles.characterStatus]}>
         {character.gender} that is currently {character.status}
       </Text>
-      <Text style={[styles.text, styles.characterSpecs]}>
+      <Text style={[styles.platform, styles.characterSpecs]}>
         Species: {character.species}
       </Text>
-      <Text style={[styles.text, styles.characterSpecs]}>
+      <Text style={[styles.platform, styles.characterSpecs]}>
         Comes from: {character.origin?.name}
       </Text>
     </>
@@ -25,7 +27,17 @@ export default function CharacterDetails({ character }: Props) {
 }
 
 const styles = StyleSheet.create({
-  text: { color: colors.gray },
+  ...Platform.select({
+    ios: {
+      platform: { color: colors.mellowBlue },
+    },
+    android: {
+      platform: { color: colors.mellowGreen },
+    },
+    default: {
+      platform: { color: colors.mellowYellow },
+    },
+  }),
   characterId: { marginBottom: 20 },
   characterName: { fontSize: 24, textTransform: "capitalize", marginBottom: 8 },
   characterStatus: {

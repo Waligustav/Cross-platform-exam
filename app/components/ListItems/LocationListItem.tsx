@@ -1,6 +1,6 @@
 import { NavigationProp, useNavigation } from "@react-navigation/core";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 import colors from "../../config/colors";
 import LocationDetailsNavigator from "../../navigation/LocationDetailsNavigator";
 import { RootParams } from "../../types/RootParams";
@@ -21,8 +21,8 @@ export default function LocationListItem({ id, name, type, dimension }: Props) {
           flex: 1,
         }}
       >
-        <Text style={[styles.text, styles.title]}>{name} </Text>
-        <Text style={styles.text}>{dimension}</Text>
+        <Text style={[styles.text, styles.title, styles.platform]}>{name}</Text>
+        <Text style={[styles.text, styles.platform]}>{dimension}</Text>
       </View>
       <View style={styles.button}>
         <LocationDetailsNavigator locationId={id} name={name} />
@@ -32,11 +32,21 @@ export default function LocationListItem({ id, name, type, dimension }: Props) {
 }
 
 const styles = StyleSheet.create({
+  ...Platform.select({
+    ios: {
+      platform: { color: colors.mellowBlue },
+    },
+    android: {
+      platform: { color: colors.mellowGreen },
+    },
+    default: {
+      platform: { color: colors.mellowYellow },
+    },
+  }),
   row: { flexDirection: "row" },
   container: { margin: 10 },
   title: { fontWeight: "bold" },
   text: {
-    color: colors.mellowGreen,
     textTransform: "capitalize",
     marginLeft: 10,
     fontSize: 16,
