@@ -1,19 +1,24 @@
-import React, { useEffect } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
 import { ListItemSeparator, ListItemDelete } from "..";
 import { CharacterListItem } from "..";
-import { AllCharacters } from "../../types/RickAndMortyTypes";
+import { Character } from "../../types/RickAndMortyTypes";
 import RickAndMortyApi from "../../api/RickAndMortyApi";
 import useApi from "../../hooks/useApi";
 import colors from "../../config/colors";
+import SearchBar from "react-native-platform-searchbar";
 
 export default function CharacterList() {
+  const [search, setSearch] = useState<string>("");
+
   const {
     data: characters,
+    filteredData: filteredCharacters,
+    setFilteredData: setFilteredCharacters,
     loading,
     error,
     request: getAllCharacters,
-  } = useApi<AllCharacters>(RickAndMortyApi.getAllCharacters);
+  } = useApi<Character>(RickAndMortyApi.getAllCharacters);
 
   useEffect(() => {
     getAllCharacters();
@@ -23,25 +28,53 @@ export default function CharacterList() {
     //setCharacter(character?.filter((c) => c.id != id));
   }
 
+  const filterData: (text: string) => void = async (text: string) => {
+    if (text) {
+      const filteredData = await characters.filter((item: any) => {
+        const itemData = item.name ? item.name.toLowerCase() : "";
+        const textData = text.toLowerCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      setFilteredCharacters(await filteredData);
+      setSearch(text);
+    } else {
+      setFilteredCharacters(await characters);
+      setSearch(text);
+    }
+  };
+
   return (
-    <FlatList
-      data={characters?.results}
-      keyExtractor={(nameObject) => nameObject.id.toString()}
-      renderItem={({ item }) => (
-        <CharacterListItem
-          id={item.id}
-          name={item.name}
-          species={item.species}
-          image={item.image}
-          renderRightActions={() => (
-            <ListItemDelete onPress={() => deleteCharacter(item.id)} />
-          )}
-        />
-      )}
-      ItemSeparatorComponent={ListItemSeparator}
-      refreshing={loading}
-      onRefresh={getAllCharacters}
-    />
+    <>
+      <SearchBar
+        theme="light"
+        onChangeText={(text) => filterData(text)}
+        onClear={() => filterData("")}
+        placeholder="Search for a character"
+        value={search}
+      >
+        {loading ? (
+          <ActivityIndicator style={{ marginRight: 10 }} />
+        ) : undefined}
+      </SearchBar>
+      <FlatList
+        data={filteredCharacters}
+        keyExtractor={(nameObject) => nameObject.id.toString()}
+        renderItem={({ item }) => (
+          <CharacterListItem
+            id={item.id}
+            name={item.name}
+            species={item.species}
+            image={item.image}
+            renderRightActions={() => (
+              <ListItemDelete onPress={() => deleteCharacter(item.id)} />
+            )}
+          />
+        )}
+        ItemSeparatorComponent={ListItemSeparator}
+        refreshing={loading}
+        onRefresh={getAllCharacters}
+      />
+    </>
   );
 }
 

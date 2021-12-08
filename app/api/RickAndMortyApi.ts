@@ -4,8 +4,12 @@ import {Character, Location, Episodes, AllLocations, AllCharacters} from '../typ
 axios.defaults.baseURL = 'https://rickandmortyapi.com/api/'
 
 const getAllCharacters = async() => {
+    let amountOfCharacters = [];
+    for (let i = 1; i < 827; i++){
+        amountOfCharacters.push(i);
+    }
     try{
-        const response = await axios.get<AllCharacters>('character/');
+        const response = await axios.get<Character>(`character/${amountOfCharacters}`);
         return response.data;
     } catch (error){
         throw 'Error fetching character: ' + error;
