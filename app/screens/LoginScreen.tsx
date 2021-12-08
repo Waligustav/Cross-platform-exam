@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     padding: 5,
     height: 30,
     width: 200,
-    borderRadius: 3,
+    borderRadius: 5,
     borderWidth: 1,
     alignSelf: "center",
     backgroundColor: colors.white,

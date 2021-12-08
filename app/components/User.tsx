@@ -50,7 +50,9 @@ export default function User({ username, imageUri }: Props) {
       <View style={styles.imageContainer}>
         <Image source={{ uri: imageUri, width: size, height: size }} />
       </View>
-      <Text style={[styles.username, styles.platform]}>{username}</Text>
+      <Text style={[styles.username, styles.platform]}>
+        {username ? username : "Anonymous user :("}
+      </Text>
     </View>
   );
 }

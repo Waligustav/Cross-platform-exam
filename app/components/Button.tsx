@@ -6,12 +6,14 @@ import {
   TouchableHighlight,
   Platform,
 } from "react-native";
-
+import { FontAwesome5 } from "@expo/vector-icons";
 import colors from "../config/colors";
 
 type Props = {
   onPress: (event: GestureResponderEvent) => void;
-  title: string;
+  title?: string;
+  fontName?: string;
+  fontColor?: string;
   type?:
     | "primary"
     | "secondary"
@@ -25,7 +27,7 @@ type Props = {
     | "orange";
 };
 
-export default function Button({ onPress, title, type = "primary" }: Props) {
+export default function Button({ onPress, title, fontName, fontColor }: Props) {
   const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
@@ -64,7 +66,10 @@ export default function Button({ onPress, title, type = "primary" }: Props) {
       style={[styles.button, styles.platform]}
       onPress={onPress}
     >
-      <Text style={[styles.text, styles.platform]}>{title}</Text>
+      <Text style={[styles.text, styles.platform]}>
+        <FontAwesome5 name={fontName} color={fontColor} size={25} />
+        {title}
+      </Text>
     </TouchableHighlight>
   );
 }
