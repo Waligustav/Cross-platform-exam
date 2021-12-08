@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
-import { ListItemSeparator, ListItemDelete } from "..";
-import { CharacterListItem } from "..";
+import { ListItemSeparator, CharacterListItem } from "..";
 import { Character } from "../../types/RickAndMortyTypes";
 import RickAndMortyApi from "../../api/RickAndMortyApi";
 import useApi from "../../hooks/useApi";
@@ -65,9 +64,6 @@ export default function CharacterList() {
             name={item.name}
             species={item.species}
             image={item.image}
-            renderRightActions={() => (
-              <ListItemDelete onPress={() => deleteCharacter(item.id)} />
-            )}
           />
         )}
         ItemSeparatorComponent={ListItemSeparator}

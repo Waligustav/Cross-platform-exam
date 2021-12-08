@@ -1,9 +1,7 @@
-import { NavigationProp, useNavigation } from "@react-navigation/core";
 import React from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
 import colors from "../../config/colors";
 import LocationDetailsNavigator from "../../navigation/LocationDetailsNavigator";
-import { RootParams } from "../../types/RootParams";
 
 type Props = {
   id: number;
@@ -12,8 +10,7 @@ type Props = {
   dimension?: string;
 };
 
-export default function LocationListItem({ id, name, type, dimension }: Props) {
-  const navigation = useNavigation<NavigationProp<RootParams>>();
+export default function LocationListItem({ id, name, dimension }: Props) {
   return (
     <View style={[styles.row, styles.container]}>
       <View
