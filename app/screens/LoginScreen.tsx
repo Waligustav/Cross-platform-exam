@@ -45,7 +45,8 @@ export default function LoginScreen({
             onPress={() =>
               navigation.navigate("Authenticated", {
                 username: userInput,
-                imageUri: "https://pbs.twimg.com/media/COWiKiuWgAALshz.jpg",
+                imageUri:
+                  "https://www.pngplay.com/wp-content/uploads/8/Upload-Icon-Logo-Transparent-File.png",
               })
             }
           />
