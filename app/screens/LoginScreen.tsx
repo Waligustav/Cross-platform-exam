@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ImageBackground,
   StyleSheet,
@@ -12,11 +12,30 @@ import Button from "../components/Button";
 import { RootParams } from "../types/RootParams";
 import colors from "../config/colors";
 import { TextInput } from "react-native-gesture-handler";
+import { Audio } from "expo-av";
 
 export default function LoginScreen({
   navigation,
 }: NativeStackScreenProps<RootParams, "Login">) {
+  const [sound, setSound] = useState<Audio.Sound>();
   const [userInput, setUserInput] = useState("");
+
+  async function playSound() {
+    const { sound } = await Audio.Sound.createAsync(
+      require("../assets/sfwRickAndMortyIntro.mp3")
+    );
+    setSound(sound);
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
+
   const image =
     "https://cutewallpaper.org/21/rick-and-morty-phone-wallpaper/Rick-And-Morty-Rick-Y-Morty-Wallpapers-Iphone-Hd-.jpg";
   let currentOs;
@@ -42,13 +61,14 @@ export default function LoginScreen({
         <View style={styles.innerContainer}>
           <Button
             title="proceed"
-            onPress={() =>
+            onPress={() => {
               navigation.navigate("Authenticated", {
                 username: userInput,
                 imageUri:
                   "https://www.pngplay.com/wp-content/uploads/8/Upload-Icon-Logo-Transparent-File.png",
-              })
-            }
+              });
+              playSound();
+            }}
           />
           <Text style={styles.text}>
             Currently running on an {currentOs} device

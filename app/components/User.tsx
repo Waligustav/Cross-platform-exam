@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Text,
   StyleSheet,
@@ -13,17 +13,19 @@ import colors from "../config/colors";
 type Props = {
   username: string;
   imageUri: string;
-  defaultSize?: number;
   hasUploadedImage?: boolean;
 };
 
-export default function User({
-  username,
-  imageUri,
-  defaultSize,
-  hasUploadedImage,
-}: Props) {
+export default function User({ username, imageUri, hasUploadedImage }: Props) {
   const { width } = Dimensions.get("screen");
+  const [showText, setShowText] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowText((showText) => !showText);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const size = width / 2;
 
@@ -68,13 +70,20 @@ export default function User({
     hideText: {
       display: "none",
     },
+    temporaryText: {
+      opacity: 0.45,
+    },
   });
 
   return (
     <View style={styles.container}>
       <Text
         style={
-          hasUploadedImage ? styles.hideText : [styles.text, styles.platform]
+          hasUploadedImage
+            ? styles.hideText
+            : showText
+            ? [styles.text, styles.temporaryText]
+            : [styles.text, styles.platform]
         }
       >
         Click to add a profile image

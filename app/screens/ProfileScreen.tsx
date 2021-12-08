@@ -47,7 +47,6 @@ export default function ProfileScreen({
           <User
             username={route.params.username}
             imageUri={route.params.imageUri}
-            defaultSize={100}
           />
         )}
       </TouchableOpacity>
